@@ -49,7 +49,7 @@
         <div class="row m-1">
           <div class="col text-center">
             <button type="button" class="btn btn-danger input-critical-button" v-on:click="resetGame()">
-              Reset Game &#8634
+              Reset Game &#8634;
             </button>
           </div>
         </div>
@@ -63,58 +63,38 @@
       <div v-if="(playerNum === turn_id)">
         <div v-if="(status === stat_playing)" class="row m-1">
           <div class="col">
-            <button type="button" v-on:click="startDiceAudio()" class="btn btn-success btn-block input-normal-button" data-bs-toggle="modal" data-bs-target="#rollModal">
+            <button type="button" v-on:click="rollDice()" class="btn btn-success btn-block input-normal-button" data-bs-toggle="modal" data-bs-target="#rollModal">
               Roll Dice</button>
-            <div class="modal" id="rollModal" v-on:click="rollDice()" tabindex="-1" role="dialog" aria-labelledby="infoModalLabel" aria-hidden="true" data-backdrop="false">
-              <div class="modal-dialog modal-dialog-centered" role="document" >
-                <div class="modal-content" id="diceModal">
-                  <div class="modal-body">
-                    <div class='box'>
-                      <div class="cube">
-                        <div class="side  front">1</div>
-                        <div class="side   back">6</div>
-                        <div class="side  right">3</div>
-                        <div class="side   left">4</div>
-                        <div class="side    top">2</div>
-                        <div class="side bottom">5</div>
-                      </div>
-                    </div>
-                    <audio id="diceAudio" type="audio/mpeg" src="/assets/audio/dice-shaking.mp3">
-                    </audio>
-                  </div>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
         <div v-if="(status === stat_choosefig)" class="row m-1">
           <div class="col btn-group justify-content-center" role="group" aria-label="First group">
-            <button type="button" class="btn btn-secondary input-normal-button" v-on:click="selectFig(1)">
+            <button type="button" class="btn btn-success input-normal-button" v-on:click="selectFig(1)">
               1</button>
-            <button type="button" class="btn btn-secondary input-normal-button" v-on:click="selectFig(2)">
+            <button type="button" class="btn btn-success input-normal-button" v-on:click="selectFig(2)">
               2</button>
-            <button type="button" class="btn btn-secondary input-normal-button" v-on:click="selectFig(3)">
+            <button type="button" class="btn btn-success input-normal-button" v-on:click="selectFig(3)">
               3</button>
-            <button type="button" class="btn btn-secondary input-normal-button" v-on:click="selectFig(4)">
+            <button type="button" class="btn btn-success input-normal-button" v-on:click="selectFig(4)">
               4</button>
-            <button type="button" class="btn btn-secondary input-normal-button" v-on:click="selectFig(5)">
+            <button type="button" class="btn btn-success input-normal-button" v-on:click="selectFig(5)">
               5</button>
           </div>
         </div>
         <div v-if="(status === stat_moving)" class="row m-1">
           <div class="col">
-            <button type="button" class="btn btn-secondary input-normal-button" v-on:click="figMove('w')">
-              &#9650</button>
+            <button type="button" class="btn btn-success input-normal-button" v-on:click="figMove('w')">
+              &#9650;</button>
           </div>
         </div>
         <div v-if="(status === stat_moving)" class="row m-1">
           <div class="col btn-group justify-content-center" role="group" aria-label="First group">
-            <button type="button" class="btn btn-secondary input-normal-button" v-on:click="figMove('a')">
-              &#9668</button>
-            <button type="button" class="btn btn-secondary input-normal-button" v-on:click="figMove('s')">
-              &#9660</button>
-            <button type="button" class="btn btn-secondary input-normal-button" v-on:click="figMove('d')">
-              &#9658</button>
+            <button type="button" class="btn btn-success input-normal-button" v-on:click="figMove('a')">
+              &#9668;</button>
+            <button type="button" class="btn btn-success input-normal-button" v-on:click="figMove('s')">
+              &#9660;</button>
+            <button type="button" class="btn btn-success input-normal-button" v-on:click="figMove('d')">
+              &#9658;</button>
           </div>
         </div>
         <div v-if="(status === stat_moving)" class="row m-1">
@@ -139,230 +119,34 @@
       </p>
     </div>
   </div>
-  <audio loop id="winAudio" type="audio/mpeg" src="/assets/audio/win.mp3"></audio>
-  <audio loop id="backgroundAudio" type="audio/mpeg" src="/assets/audio/backgroundaudio.mp3" preload="auto"></audio>
+  <audio loop id="winAudio" type="audio/mpeg" src="../audio/win.mp3"></audio>
+  <audio autoplay="true" loop id="backgroundAudio" type="audio/mpeg" src="../audio/backgroundaudio.mp3" preload="auto"></audio>
 </template>
 
 <script>
+import {webSocketMixin} from "@/mixins/webSocketMixin";
+import $ from "jquery";
+
 export default {
   name: "InfoPanel",
+  mixins: [webSocketMixin],
   data() {
     return {
-      websocketVUE: new WebSocket("ws://" + location.hostname + ":9000/websocket"),
-      data: {},
-      status: 0, //status kann auch gelöscht und mit data.status aufgerufen werden. (Das wären offline daten.
-      gameMessage: " ",
-      atLeast2Players: " ",
-      players: " ",
-      currentplayer: " ",
-      diceRolled: " ",
-      gamewinner: " ",
-      turn_id: 0,
-      player_count: 0,
-      reset: 0,
-      secretId: " ",
-      playerNum: -1,
+      stat_welcome: 0,
+      stat_loaded: 1,
+      stat_saved: 2,
+      stat_gamewinner: 3,
+      stat_choosefig: 4,
+      stat_idle: 5,
+      stat_ready1: 6,
+      stat_ready2: 7,
+      stat_playing: 13,
+      stat_moving: 14,
+      stat_entername: 15,
     }
   },
   methods: {
-    connectWebSocket() {
-      this.websocketVUE.onopen = (event) => {
-        this.websocketVUE.send("Trying to connect to Server");
-      }
-
-      this.websocketVUE.onclose = (event) => {
-        this.processCommand("reset", " ")
-      };
-
-      this.websocketVUE.onerror = (event) => {
-      };
-
-      this.websocketVUE.onmessage = (event) => {
-        if (typeof event.data === "string") {
-          this.data = JSON.parse(event.data)
-
-          if (this.data.reset === 1) {
-            this.playerNum = -1
-            swal({
-              icon: "warning",
-              text: "Game has been reset! (Player left or game master chose to)",
-              title: "Error!"
-            })
-          }
-          if (this.data.secretId.length > 1) {
-            this.secretId = this.data.secretId
-          }
-          this.status = this.data.gameStatusID
-          this.gameMessage =  this.data.string.gameMessage
-          this.atLeast2Players = this.data.string.atLeast2Players
-          this.players = this.data.string.players
-          this.currentplayer = this.data.string.currentplayer
-          this.diceRolled = this.data.string.diceRolled
-          this.gamewinner = this.data.string.gamewinner
-          this.turn_id = this.data.turn_id
-          this.player_count = this.data.player_count
-          this.reset = this.data.reset
-          this.checkWin()
-          this.updateGameBoard()
-        }
-      };
-    },
-    processCmdWS(cmd, data) {
-      this.websocketVUE.send(cmd + "|" + data + "|" + this.secretId)
-    },
-    processCommand(cmd, returnData) {
-      this.post("POST", "/command", {"cmd": cmd, "data": returnData, "secretId": this.secretId.toString()}, cmd).then(() => {
-      })
-    },
-    post(method, url, returnData, cmd) {
-      return $.ajax({
-        method: method,
-        url: url,
-        data: JSON.stringify(returnData),
-        dataType: "json",
-        contentType: "application/json",
-
-        success: function (response) {
-          this.data = response;
-        },
-        error: function (response) {
-          console.log("Error")
-          console.error(response);
-        }
-      });
-    },
-    checkWin() {
-      if (this.status === this.stat_gamewinner) {
-        $('#backgroundAudio').get(0).pause();
-        let audio = $('#winAudio').get(0);
-        audio.loop = true;
-        audio.play();
-        swal({
-          icon: "info",
-          text: "Congratulations " + this.gamewinner + "!\nPress OK to start a new game.",
-          title: "We have winner!"
-        })
-            .then(() => {
-              audio.pause()
-              $('#backgroundAudio').get(0).play()
-              this.processCmdWS("reset", " ")
-            });
-      }
-    },
-    updateGameBoard() {
-      for (let i = 0; i < (18 * 19); ++i) {
-        let row = this.data.rows[i].row
-        let col = this.data.rows[i].col
-        let fieldID = "field\\{" + row + "\\}_\\{" + col + "\\}" // \\ für escape von jquery
-        let cellString = this.data.rows[i].cell
-
-        if (cellString === "InvalidCell") {
-          $('#' + fieldID).attr("src", "/assets/images/game/invalid.png");
-        } else if (cellString === "BlockedCell") {
-          $('#' + fieldID).attr("src", "/assets/images/game/blocked.png");
-        } else if (cellString === "FreeCell") {
-          $('#' + fieldID).attr("src", "/assets/images/game/free.png");
-        } else if (cellString === "SecureCell") {
-          $('#' + fieldID).attr("src", "/assets/images/game/free.png");
-        } else if (cellString === "GoalCell") {
-          $('#' + fieldID).attr("src", "/assets/images/game/goal.png");
-        } else if (cellString === "Start1Cell") {
-          $('#' + fieldID).attr("src", "/assets/images/game/start1.png");
-        } else if (cellString === "Start2Cell") {
-          $('#' + fieldID).attr("src", "/assets/images/game/start2.png");
-        } else if (cellString === "Start3Cell") {
-          $('#' + fieldID).attr("src", "/assets/images/game/start3.png");
-        } else if (cellString === "Start4Cell") {
-          $('#' + fieldID).attr("src", "/assets/images/game/start4.png");
-        } else if (cellString === "PlayerCell11") {
-          $('#' + fieldID).attr("src", "/assets/images/game/player11.png");
-        } else if (cellString === "PlayerCell12") {
-          $('#' + fieldID).attr("src", "/assets/images/game/player12.png");
-        } else if (cellString === "PlayerCell13") {
-          $('#' + fieldID).attr("src", "/assets/images/game/player13.png");
-        } else if (cellString === "PlayerCell14") {
-          $('#' + fieldID).attr("src", "/assets/images/game/player14.png");
-        } else if (cellString === "PlayerCell15") {
-          $('#' + fieldID).attr("src", "/assets/images/game/player15.png");
-        } else if (cellString === "PlayerCell21") {
-          $('#' + fieldID).attr("src", "/assets/images/game/player21.png");
-        } else if (cellString === "PlayerCell22") {
-          $('#' + fieldID).attr("src", "/assets/images/game/player22.png");
-        } else if (cellString === "PlayerCell23") {
-          $('#' + fieldID).attr("src", "/assets/images/game/player23.png");
-        } else if (cellString === "PlayerCell24") {
-          $('#' + fieldID).attr("src", "/assets/images/game/player24.png");
-        } else if (cellString === "PlayerCell25") {
-          $('#' + fieldID).attr("src", "/assets/images/game/player25.png");
-        } else if (cellString === "PlayerCell31") {
-          $('#' + fieldID).attr("src", "/assets/images/game/player31.png");
-        } else if (cellString === "PlayerCell32") {
-          $('#' + fieldID).attr("src", "/assets/images/game/player32.png");
-        } else if (cellString === "PlayerCell33") {
-          $('#' + fieldID).attr("src", "/assets/images/game/player33.png");
-        } else if (cellString === "PlayerCell34") {
-          $('#' + fieldID).attr("src", "/assets/images/game/player34.png");
-        } else if (cellString === "PlayerCell35") {
-          $('#' + fieldID).attr("src", "/assets/images/game/player35.png");
-        } else if (cellString === "PlayerCell41") {
-          $('#' + fieldID).attr("src", "/assets/images/game/player41.png");
-        } else if (cellString === "PlayerCell42") {
-          $('#' + fieldID).attr("src", "/assets/images/game/player42.png");
-        } else if (cellString === "PlayerCell43") {
-          $('#' + fieldID).attr("src", "/assets/images/game/player43.png");
-        } else if (cellString === "PlayerCell44") {
-          $('#' + fieldID).attr("src", "/assets/images/game/player44.png");
-        } else if (cellString === "PlayerCell45") {
-          $('#' + fieldID).attr("src", "/assets/images/game/player45.png");
-        }
-      }
-    },
-    getData() {
-      let that = this;
-
-      return $.ajax({
-        method: "GET",
-        url: "/status",
-        dataType: "json",
-        success: function (response) {
-          that.data = response;
-          that.status = response.gameStatusID
-          that.gameMessage =  response.gameMessage
-          that.atLeast2Players = response.string.atLeast2Players
-          that.players = response.string.players
-          that.currentplayer = response.string.currentplayer
-          that.diceRolled = response.string.diceRolled
-          that.gamewinner = response.string.gamewinner
-          that.turn_id = response.turn_id
-          that.player_count = response.player_count
-          that.reset = response.reset
-          that.checkWin()
-          that.updateGameBoard()
-        }
-      });
-    },
-    startBackgroundMusic() {
-      $("#backgroundAudio").get(0).play();
-    },
-    startGame() {
-      this.processCmdWS("start", " ")
-    },
-    resetGame() {
-      swal({
-        buttons: true,
-        dangerMode: true,
-        icon: "warning",
-        text: "Do you really want to reset the game?",
-        title: "Are you sure?"
-      })
-          .then((willDelete) => {
-            if (willDelete) {
-              this.processCmdWS("reset", " ")
-            }
-          });
-    },
     rollDice() {
-      $('#rollModal').modal('hide');
       this.processCmdWS("rollDice", " ")
     },
     selectFig(num) {
@@ -377,10 +161,11 @@ export default {
     addPlayer() {
       const player_name = $('#name').get(0).value;
       if (player_name === "") {
-        swal({
+        this.$swal({
           icon: "warning",
           text: "Blank name is not allowed!",
-          title: "Error!"
+          title: "Error!",
+          showCloseButton: "Nice",
         })
       } else {
         this.playerNum = this.player_count + 1
@@ -392,15 +177,32 @@ export default {
       audio.loop = true;
       audio.play();
     },
-    created() {
-      this.getData();
-      this.connectWebSocket();
+    startGame() {
+      this.processCmdWS("start", " ")
+    },
+    resetGame() {
+      this.$swal({
+        buttons: true,
+        dangerMode: true,
+        icon: "warning",
+        text: "Do you really want to reset the game?",
+        title: "Are you sure?",
+        showCancelButton: true,
+        confirmButtonText: 'Reset',
+      })
+          .then((willDelete) => {
+            if (willDelete.isConfirmed) {
+              this.processCmdWS("reset", " ")
+            }
+          });
     },
   },
-
+  created() {
+    this.connectWebSocket();
+  },
 }
 </script>
 
-<style scoped>
+<style lang="less">
 
 </style>
