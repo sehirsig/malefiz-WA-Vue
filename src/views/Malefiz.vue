@@ -10,7 +10,7 @@
       </div>
     </div>
   </div>
-  <div v-if:="!isOnline" class="container">
+  <div v-if:="isOnline === false" class="container">
     <div class="q-pa-md">
       <div class="text-purple q-gutter-md" style="font-size: 2em">
         <q-icon name="warning" />
@@ -25,9 +25,11 @@
 import InfoPanel from "@/components/Game/InfoPanel.vue";
 import Gameboard from "@/components/Game/Gameboard.vue";
 import Navigation from "@/components/Navigation.vue";
+import {webSocketMixin} from "@/mixins/webSocketMixin";
 
 export default {
   name: "Malefiz-Game",
+  mixins: [webSocketMixin],
   components: {Navigation, Gameboard, InfoPanel}
 }
 </script>
