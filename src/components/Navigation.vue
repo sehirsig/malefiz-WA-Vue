@@ -14,7 +14,7 @@
           <a v-if="selected === 'malefiz'" class="nav-link active hoverable text-center" aria-current="page" :href="malefizLink">Malefiz</a>
           <a v-else class="nav-link hoverable text-center" :href="malefizLink">Malefiz</a>
           <button type="button" class="btn btn-dark hoverable" data-bs-toggle="modal" data-bs-target="#infoModal" >
-            <i class="bi bi-info-circle"></i>
+            <q-icon name="info"/>
             Game Instructions
           </button>
           <div class="modal fade fixed-top" id="infoModal" tabindex="-1" role="dialog" aria-labelledby="infoModalLabel" aria-hidden="true" data-backdrop="false">

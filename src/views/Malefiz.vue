@@ -11,6 +11,12 @@
     </div>
   </div>
   <div v-if:="!isOnline" class="container">
+    <div class="q-pa-md">
+      <div class="text-purple q-gutter-md" style="font-size: 2em">
+        <q-icon name="warning" />
+      </div>
+    </div>
+
     <p>No connection to the server</p>
   </div>
 </template>
