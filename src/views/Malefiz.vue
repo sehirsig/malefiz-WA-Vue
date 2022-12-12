@@ -1,6 +1,6 @@
 <template>
   <Navigation selected="malefiz"></Navigation>
-  <div class="container">
+  <div v-if:="isOnline" class="container">
     <div class="row">
       <div class="col-lg-4">
         <InfoPanel></InfoPanel>
@@ -9,6 +9,9 @@
         <Gameboard></Gameboard>
       </div>
     </div>
+  </div>
+  <div v-if:="!isOnline" class="container">
+    <p>No connection to the server</p>
   </div>
 </template>
 

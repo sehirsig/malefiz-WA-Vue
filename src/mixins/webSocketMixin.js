@@ -19,6 +19,7 @@ export const webSocketMixin = {
             reset: 0,
             secretId: " ",
             playerNum: -1,
+            isOnline: false,
         }
     },
     methods: {
@@ -31,12 +32,15 @@ export const webSocketMixin = {
 
             this.webSocket.onclose = () => {
                 this.processCommand("reset", " ")
+                this.isOnline = false;
             };
 
             this.webSocket.onerror = () => {
+                this.isOnline = false;
             };
 
             this.webSocket.onmessage = (event) => {
+                this.isOnline = true;
                 if (typeof event.data === "string") {
                     this.data = JSON.parse(event.data)
 
