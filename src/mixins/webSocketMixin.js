@@ -19,7 +19,7 @@ export const webSocketMixin = {
             reset: 0,
             secretId: " ",
             playerNum: -1,
-            isOnline: false,
+            isOnline: Boolean,
         }
     },
     methods: {
