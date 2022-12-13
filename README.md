@@ -1,4 +1,8 @@
-# malefiz-wa-vue
+# Malefiz-WA-Vue
+
+
+Welcome to our Vue Frontend.
+Backend is the Play Server.
 
 ## Project setup
 ```
