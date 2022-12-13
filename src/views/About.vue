@@ -3,23 +3,23 @@
   <Header></Header>
   <div class="container">
     <div class="readme-section">
-      <h1 id="htwg-constance-ain-6-web-applications">HTWG Constance - AIN 6 - Web Applications</h1>
-      <h1 id="scala-project-play-server-malefiz-gameboard">Scala Project Play Server - Malefiz Game</h1>
-      <h2 id="gameboard-project-for-the-lecture-wa">Game Project For The Lecture WA</h2>
+      <h4 id="htwg-constance-ain-6-web-applications">HTWG Constance - AIN 6 - Web Applications</h4>
+      <h4 id="scala-project-play-server-malefiz-gameboard">Scala Project Play Server - Malefiz Game</h4>
+      <h5 id="gameboard-project-for-the-lecture-wa">Game Project For The Lecture WA</h5>
       <p><img class="img-fluid rounded"
               src="https://user-images.githubusercontent.com/81407658/114448533-f96ce480-9bd3-11eb-93a7-74dc0941f6c1.jpg"
               alt="gamepicture"></p>
-      <h1 id="gameboard-rules">Game Rules</h1>
+      <h4 id="gameboard-rules">Game Rules</h4>
       <p>Malefiz is a board gameboard for 2 to 4 players. Each player has 5 figures to play with. Every figure starts in
         their base, at the bottom of the board. The beginning player rolls the dice. The thrown number has to be pulled
         completly. While walking with the figure, change of direction is not allowed. If a player lands on an enemys
         figure, the enemy has to put his figure back to his base. Figures are allowed to jump over other figures, but
         not over barricades. If a player lands on the barricade (with the exact number), he has to set the barricade
         anywhere on the gameboard board, all black fields are allowed, except the lowest row.</p>
-      <h2 id="goal-of-the-gameboard">Goal Of The Game</h2>
+      <h5 id="goal-of-the-gameboard">Goal Of The Game</h5>
       <p>The player reaching the top of the gameboard first (with the exact number rolled with the dice) with one figure
         wins the gameboard.</p>
-      <h1 id="how-this-gameboard-works">How This Game Works</h1>
+      <h4 id="how-this-gameboard-works">How This Game Works</h4>
       <details>
         <summary>Open The Game And Add Players (2-4)!</summary>
         <p>
@@ -63,13 +63,13 @@
         </p>
       </details>
 
-      <h2 id="informations">Informations</h2>
+      <h5 id="informations">Informations</h5>
       <blockquote>
         <p>When the player does a faulty move, the gamefigure gets reset to the starting point of its move (ex. walk
           into a barrier with one or more moves left). This is done with our Undo-Manager.</p>
         <p>If a player can&#39;t do a regular move, the player can press the &#39;skip&#39; button to skip his move.</p>
       </blockquote>
-      <h2 id="extra-features">Extra Features</h2>
+      <h5 id="extra-features">Extra Features</h5>
       <details>
         <summary>Skip A Move!</summary>
         <p>
@@ -135,12 +135,12 @@
         </p>
       </details>
 
-      <h2 id="tui-commands-information">TUI Commands Information</h2>
+      <h5 id="tui-commands-information">TUI Commands Information</h5>
       <blockquote>
         <p>After the player has rolled the dice, a number from 1 to 5 has to be entered, to choose the gamefigure.</p>
       </blockquote>
-      <h1 id="procedure-of-making-this-gameboard">Procedure Of Making This Game</h1>
-      <h1 id="used-design-patterns">Used Design Patterns</h1>
+      <h4 id="procedure-of-making-this-gameboard">Procedure Of Making This Game</h4>
+      <h4 id="used-design-patterns">Used Design Patterns</h4>
       <ul>
         <li>Builder-Pattern <em><a
             href="https://github.com/franzgajewski/malefiz/blob/master/src/main/scala/de/htwg/se/malefiz/model/playerComponent/PlayerBuilder.scala">
@@ -169,7 +169,7 @@
             href="https://github.com/franzgajewski/malefiz/blob/master/src/main/scala/de/htwg/se/malefiz/util/UndoManager.scala"><em>
           UndoManager</em></a></li>
       </ul>
-      <h1 id="presentation-link">Presentation Link</h1>
+      <h4 id="presentation-link">Presentation Link</h4>
       <p><a href="https://docs.google.com/">Google Presentation</a></p>
       <p><em>Project Malefiz written by <a href="https://github.com/sehirsig/">
         sehirsig</a> &amp; <a href="https://github.com/jojoGraff/">jojoGraff</a></em></p>
