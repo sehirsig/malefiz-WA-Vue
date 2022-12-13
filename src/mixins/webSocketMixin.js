@@ -31,7 +31,7 @@ export const webSocketMixin = {
             }
 
             this.webSocket.onclose = () => {
-                this.processCommand("reset", " ")
+                this.processCmdWS("reset", " ")
                 this.isOnline = false;
             };
 
@@ -73,10 +73,6 @@ export const webSocketMixin = {
         },
         processCmdWS(cmd, data) {
             this.webSocket.send(cmd + "|" + data + "|" + this.secretId)
-        },
-        processCommand(cmd, returnData) {
-            this.post("POST", "/command", {"cmd": cmd, "data": returnData, "secretId": this.secretId.toString()}, cmd).then(() => {
-            })
         },
         checkWin() {
             if (this.status === this.stat_gamewinner) {
