@@ -127,21 +127,6 @@ export default {
   name: "InfoPanel",
   components: {AddPlayerForm, SkipButton, FigMoveButton, SelectFigButton, RollDiceButton, ResetButton, StartButton},
   mixins: [webSocketMixin],
-  data() {
-    return {
-      stat_welcome: 0,
-      stat_loaded: 1,
-      stat_saved: 2,
-      stat_gamewinner: 3,
-      stat_choosefig: 4,
-      stat_idle: 5,
-      stat_ready1: 6,
-      stat_ready2: 7,
-      stat_playing: 13,
-      stat_moving: 14,
-      stat_entername: 15,
-    }
-  },
   methods: {
     rollDice() {
       this.processCmdWS("rollDice", " ")
