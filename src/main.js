@@ -9,12 +9,11 @@ import "bootstrap/dist/css/bootstrap.css"
 import "bootstrap/dist/js/bootstrap.js";
 
 import {Quasar} from 'quasar'
-import quO from './quasar-user-options'
 import quasarUserOptions from './quasar-user-options'
 
-const app = createApp(App).use(Quasar, quasarUserOptions)
+const app = createApp(App)
 
-app.use(Quasar, quO)
+app.use(Quasar, quasarUserOptions)
 
 app.use(VueSweetalert2);
 
