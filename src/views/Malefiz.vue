@@ -10,7 +10,7 @@
       </div>
     </div>
   </div>
-  <div v-if:="isOnline === false" class="container">
+  <div v-else: class="container">
     <div class="q-pa-md">
       <div class="text-purple q-gutter-md" style="font-size: 2em">
         <q-icon name="warning" />
@@ -30,7 +30,10 @@ import {webSocketMixin} from "@/mixins/webSocketMixin";
 export default {
   name: "Malefiz-Game",
   mixins: [webSocketMixin],
-  components: {Navigation, Gameboard, InfoPanel}
+  components: {Navigation, Gameboard, InfoPanel},
+  mounted() {
+    this.connectWebSocket();
+  },
 }
 </script>
 

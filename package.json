@@ -1,5 +1,5 @@
 {
-  "name": "Malefiz",
+  "name": "malefiz",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -14,6 +14,7 @@
     "core-js": "^3.26.1",
     "jquery": "^3.6.1",
     "quasar": "^2.10.2",
+    "register-service-worker": "^1.7.2",
     "vue": "^3.2.45",
     "vue-router": "^4.1.6",
     "vue-sweetalert2": "^5.0.5"
@@ -23,6 +24,7 @@
     "@babel/eslint-parser": "^7.12.16",
     "@vue/cli-plugin-babel": "~5.0.0",
     "@vue/cli-plugin-eslint": "~5.0.0",
+    "@vue/cli-plugin-pwa": "~5.0.8",
     "@vue/cli-plugin-router": "~5.0.8",
     "@vue/cli-service": "~5.0.0",
     "eslint": "^7.32.0",
