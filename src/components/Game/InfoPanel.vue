@@ -1,54 +1,54 @@
 <template>
   <div class="container m-1" id="information-panel">
-    <p v-if="(playerNum > 0)" class="text-center">
+    <p v-if="(playerNum > 0)" class="text-center info-text">
       You are Player {{ playerNum }}
     </p>
-    <p v-if="(status === stat_ready1 && playerNum === 1)" class="text-center">
+    <p v-if="(status === stat_ready1 && playerNum === 1)" class="text-center info-text">
       {{ gameMessage }}
     </p>
-    <p v-if="(status === stat_ready1 && playerNum !== 1)" class="text-center">
+    <p v-if="(status === stat_ready1 && playerNum !== 1)" class="text-center info-text">
       Wait for Player 1 to start
       <svg class="spinner" viewBox="0 0 50 50">
         <circle class="path" cx="25" cy="25" r="20" fill="none" stroke-width="5"></circle>
       </svg>
     </p>
-    <p v-if="(status === stat_ready2 && playerNum === 1)" class="text-center">
+    <p v-if="(status === stat_ready2 && playerNum === 1)" class="text-center info-text">
       {{ gameMessage }}
     </p>
-    <p v-if="(status === stat_ready2 && playerNum === 1)" class="text-center">
+    <p v-if="(status === stat_ready2 && playerNum === 1)" class="text-center info-text">
       {{ players }}
     </p>
-    <p v-if="(status === stat_ready2 && playerNum !== 1)" class="text-center">
+    <p v-if="(status === stat_ready2 && playerNum !== 1)" class="text-center info-text">
       Wait for Player 1 to start
     </p>
-    <p v-if="((status === stat_playing) && (playerNum === turn_id))" class="text-center">
+    <p v-if="((status === stat_playing) && (playerNum === turn_id))" class="text-center info-text">
       {{ currentplayer }}
     </p>
-    <p v-if="((status === stat_choosefig || status === stat_moving) && (playerNum === turn_id))" class="text-center">
+    <p v-if="((status === stat_choosefig || status === stat_moving) && (playerNum === turn_id))" class="text-center info-text">
       {{ currentplayer }}
     </p>
-    <p v-if="((status === stat_choosefig || status === stat_moving) && (playerNum === turn_id))" class="text-center">
+    <p v-if="((status === stat_choosefig || status === stat_moving) && (playerNum === turn_id))" class="text-center info-text">
       {{ diceRolled }}
     </p>
     <p v-if="((0 < turn_id) && (playerNum !== turn_id) && (status === stat_playing || status === stat_choosefig || status === stat_moving) && 0 < playerNum)"
-       class="text-center">
+       class="text-center info-text">
       Wait for Player {{ turn_id }} to end his turn
       <svg class="spinner" viewBox="0 0 50 50">
         <circle class="path" cx="25" cy="25" r="20" fill="none" stroke-width="5"></circle>
       </svg>
     </p>
     <p v-if="((status === stat_welcome || status === stat_ready1 || status === stat_idle) && (player_count < 2))"
-       class="text-center">
+       class="text-center info-text">
       {{ atLeast2Players }}
     </p>
-    <p v-if="(status === stat_welcome || status === stat_ready1 || status === stat_idle)" class="text-center">
+    <p v-if="(status === stat_welcome || status === stat_ready1 || status === stat_idle)" class="text-center info-text">
       {{ players }}
     </p>
-    <p v-if="(status === stat_gamewinner)" class="text-center">
+    <p v-if="(status === stat_gamewinner)" class="text-center info-text">
       We have a winner ! Congratulations {{ gamewinner }} !
     </p>
     <p v-if="(playerNum === -1 && (status !== stat_welcome && status !== stat_ready1 && status !== stat_ready2 && status !== stat_idle))"
-       class="text-center text-light">
+       class="text-center text-light info-text">
       Wait for this game to end.
     </p>
   </div>

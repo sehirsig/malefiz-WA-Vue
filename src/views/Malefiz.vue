@@ -52,11 +52,22 @@ export default {
 @gamefield_width: calc(@gamecell_size * 19);
 @gamefield_heigth: calc(@gamecell_size * 20);
 
-@tiny: 500px;
-@small: 900px;
-@medium: 1200px;
-@large: 1400px;
-@xxl: 5000px;
+@x-small: 575px; // >=
+@small: 767px; // >=
+@medium: 991px; // >=
+@large: 1199px; // >=
+@xl: 1399px; // >=
+@xxl: 1400px; // <=
+
+/*
+Breakpoint	Class	Dimensions
+X-Small	None	< 576px
+Small	sm	≥ 576px
+Medium	md	≥ 768px
+Large	lg	≥ 992px
+Extra large	xl	≥ 1200px
+Extra extra large	xxl	≥ 1400px
+ */
 
 #information-panel {
   grid-area: infopanel;
@@ -77,52 +88,356 @@ export default {
       ". . inputpanel inputpanel . gamepanel gamepanel gamepanel gamepanel . . ."
       ". . inputpanel inputpanel . gamepanel gamepanel gamepanel gamepanel . . ."
       ". . . . . gamepanel gamepanel gamepanel gamepanel . . ."
-      ". . . . . gamepanel gamepanel gamepanel gamepanel . . ."
+      ". . . . . . . . . . . ."
 }
 
-@media (max-width: @small) and (orientation: landscape) and (max-height: @small) {
+//X-Small
+
+@media (max-width: @x-small) and (orientation: landscape) {
+  @gamecell_size: 1vw;
+  @gamefield_width: calc(@gamecell_size * 19);
+  @gamefield_heigth: calc(@gamecell_size * 20);
   .game-field {
-    height: @gamecell_size * 0.75;
-    width: @gamecell_size * 0.75;
+    height: @gamecell_size * 1.5;
+    width: @gamecell_size * 1.5;
   }
-
+  .game-field-col {
+    height: @gamecell_size * 2;
+    width: @gamecell_size * 2;
+  }
+  #gamepanel {
+    height: 20vh;
+    width: 20vw;
+  }
   .grid {
-    display: grid;
-    grid-template-columns: 5vw 15vw 10vw 50vw 15vw 5vw ;
-    grid-template-rows: repeat(5, 20vh);
+    display: grid;grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: repeat(3, 0.1fr);
     grid-template-areas:
-      ". infopanel infopanel gamepanel gamepanel ."
-      ". infopanel infopanel gamepanel gamepanel ."
-      ". inputpanel inputpanel gamepanel gamepanel ."
-      ". inputpanel inputpanel gamepanel gamepanel ."
-      ". . . . . ."
+      ". infopanel infopanel infopanel . gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel ."
+      ". inputpanel inputpanel inputpanel . gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel ."
+      ". . . . . gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel ."
   }
+  @input_font_size: 1.15vw ! important;
+  .input-critical-button {font-size: @input_font_size;}
+  .input-normal-button {font-size: @input_font_size;}
+  .input-warning-button {font-size: @input_font_size;}
+  .info-text {font-size: @input_font_size;}
 }
 
-@media (max-width: @small) and (orientation: portrait) {
-
-  .game-field {
-    height: @gamecell_size * 1.7;
-    width: @gamecell_size * 1.7;
-  }
-
-  .grid {
-    display: grid;
-    grid-template-columns: 5vw 15vw 60vw 15vw 5vw ;
-    grid-template-rows: 10vh 20vh 60vh;
-    grid-template-areas:
-      ". infopanel  infopanel infopanel ."
-      ". inputpanel inputpanel inputpanel ."
-      ". gamepanel gamepanel gamepanel ."
-  }
-}
-
-@media (min-width: @large) {
+@media (max-width: @x-small) and (orientation: portrait) {
+  @gamecell_size: 2.25vh;
+  @gamefield_width: calc(@gamecell_size * 19);
+  @gamefield_heigth: calc(@gamecell_size * 20);
   .game-field {
     height: @gamecell_size;
     width: @gamecell_size;
   }
+  .game-field-col {
+    height: @gamecell_size;
+    width: @gamecell_size;
+  }
+  #gamepanel {
+    height: 4 * 11.25vh;
+    width: 10 * 1fr;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: repeat(8, 11.25vh);
+    grid-template-areas:
+      ". . infopanel infopanel infopanel infopanel infopanel infopanel infopanel infopanel . ."
+      ". . inputpanel inputpanel inputpanel inputpanel inputpanel inputpanel inputpanel inputpanel . ."
+      ". . inputpanel inputpanel inputpanel inputpanel inputpanel inputpanel inputpanel inputpanel . ."
+      ". gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel ."
+      ". gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel ."
+      ". gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel ."
+      ". gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel ."
+      ". . . . . . . . . . . ."
+  }
+  @input_font_size: 1.1vh ! important;
+  .input-critical-button {font-size: @input_font_size;}
+  .input-normal-button {font-size: @input_font_size;}
+  .input-warning-button {font-size: @input_font_size;}
+  .info-text {font-size: @input_font_size;}
 }
+
+
+//Small
+
+@media (max-width: @small - 1) and (min-width: @x-small + 1) and (orientation: landscape) {
+  @gamecell_size: 1vw;
+  @gamefield_width: calc(@gamecell_size * 19);
+  @gamefield_heigth: calc(@gamecell_size * 20);
+  .game-field {
+    height: @gamecell_size * 1.5;
+    width: @gamecell_size * 1.5;
+  }
+  .game-field-col {
+    height: @gamecell_size * 2;
+    width: @gamecell_size * 2;
+  }
+  #gamepanel {
+    height: 20vh;
+    width: 20vw;
+  }
+  .grid {
+    display: grid;grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: repeat(3, 0.1fr);
+    grid-template-areas:
+      ". infopanel infopanel infopanel . gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel ."
+      ". inputpanel inputpanel inputpanel . gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel ."
+      ". . . . . gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel ."
+  }
+  @input_font_size: 1.15vw ! important;
+  .input-critical-button {font-size: @input_font_size;}
+  .input-normal-button {font-size: @input_font_size;}
+  .input-warning-button {font-size: @input_font_size;}
+  .info-text {font-size: @input_font_size;}
+}
+
+@media (max-width: @small - 1) and (min-width: @x-small + 1) and (orientation: portrait) {
+  @gamecell_size: 2.25vh;
+  @gamefield_width: calc(@gamecell_size * 19);
+  @gamefield_heigth: calc(@gamecell_size * 20);
+  .game-field {
+    height: @gamecell_size;
+    width: @gamecell_size;
+  }
+  .game-field-col {
+    height: @gamecell_size;
+    width: @gamecell_size;
+  }
+  #gamepanel {
+    height: 4 * 11.25vh;
+    width: 8 * 1fr;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: repeat(8, 11.25vh);
+    grid-template-areas:
+      ". . . . infopanel infopanel infopanel infopanel . . . ."
+      ". . . . inputpanel inputpanel inputpanel inputpanel . . . ."
+      ". . . . inputpanel inputpanel inputpanel inputpanel . . . ."
+      ". . gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel . ."
+      ". . gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel . ."
+      ". . gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel . ."
+      ". . gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel . ."
+      ". . . . . . . . . . . ."
+  }
+  @input_font_size: 1.15vh ! important;
+  .input-critical-button {font-size: @input_font_size;}
+  .input-normal-button {font-size: @input_font_size;}
+  .input-warning-button {font-size: @input_font_size;}
+  .info-text {font-size: @input_font_size;}
+}
+
+//Medium
+
+@media (max-width: @medium - 1) and (min-width: @small + 1) and (orientation: landscape) {
+  @gamecell_size: 1vw;
+  @gamefield_width: calc(@gamecell_size * 19);
+  @gamefield_heigth: calc(@gamecell_size * 20);
+  .game-field {
+    height: @gamecell_size * 2;
+    width: @gamecell_size * 2;
+  }
+  .game-field-col {
+    height: @gamecell_size * 2;
+    width: @gamecell_size * 2;
+  }
+  #gamepanel {
+    height: 1 * 25vh;
+    width: 5 * 1fr;
+  }
+  .grid {
+    display: grid;grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: repeat(3, 25vh);
+    grid-template-areas:
+      ". infopanel infopanel infopanel . gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel ."
+      ". inputpanel inputpanel inputpanel . gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel ."
+      ". inputpanel inputpanel inputpanel . gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel ."
+  }
+  @input_font_size: 1.15vw ! important;
+  .input-critical-button {font-size: @input_font_size;}
+  .input-normal-button {font-size: @input_font_size;}
+  .input-warning-button {font-size: @input_font_size;}
+  .info-text {font-size: @input_font_size;}
+}
+
+@media (max-width: @medium - 1) and (min-width: @small + 1) and (orientation: portrait) {
+  @gamecell_size: 2.75vh;
+  @gamefield_width: calc(@gamecell_size * 19);
+  @gamefield_heigth: calc(@gamecell_size * 20);
+  .game-field {
+    height: @gamecell_size;
+    width: @gamecell_size * 0.85;
+  }
+  .game-field-col {
+    height: @gamecell_size;
+    width: @gamecell_size;
+  }
+  #gamepanel {
+    height: 11.25vh * 5;
+    width: 8 * 1fr;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: repeat(8, 11.25vh);
+    grid-template-areas:
+      ". . . infopanel infopanel infopanel infopanel infopanel infopanel . . ."
+      ". . . inputpanel inputpanel inputpanel inputpanel inputpanel inputpanel . . ."
+      ". . . inputpanel inputpanel inputpanel inputpanel inputpanel inputpanel . . ."
+      ". . gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel . ."
+      ". . gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel . ."
+      ". . gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel . ."
+      ". . gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel . ."
+  }
+  @input_font_size: 1.225vh ! important;
+  .input-critical-button {font-size: @input_font_size;}
+  .input-normal-button {font-size: @input_font_size;}
+  .input-warning-button {font-size: @input_font_size;}
+  .info-text {font-size: @input_font_size;}
+}
+
+//Large
+
+@media (max-width: @large - 1) and (min-width: @medium + 1) and (orientation: landscape) {
+  @gamecell_size: 2vw;
+  @gamefield_width: calc(@gamecell_size * 19);
+  @gamefield_heigth: calc(@gamecell_size * 20);
+  .game-field {
+    height: @gamecell_size;
+    width: @gamecell_size;
+  }
+  .game-field-col {
+    height: @gamecell_size;
+    width: @gamecell_size;
+  }
+  #gamepanel {
+    height: 20vh;
+    width: 20vw;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    grid-template-areas:
+      ". . infopanel infopanel . gamepanel gamepanel gamepanel gamepanel . . ."
+      ". . inputpanel inputpanel . gamepanel gamepanel gamepanel gamepanel . . ."
+      ". . . . . gamepanel gamepanel gamepanel gamepanel . . ."}
+  @input_font_size: 1.15vw ! important;
+  .input-critical-button {font-size: @input_font_size;}
+  .input-normal-button {font-size: @input_font_size;}
+  .input-warning-button {font-size: @input_font_size;}
+  .info-text {font-size: @input_font_size;}
+}
+
+@media (max-width: @large - 1) and (min-width: @medium + 1) and (orientation: portrait) {
+  @gamecell_size: 2.25vh;
+  @gamefield_width: calc(@gamecell_size * 19);
+  @gamefield_heigth: calc(@gamecell_size * 20);
+  .game-field {
+    height: @gamecell_size;
+    width: @gamecell_size;
+  }
+  .game-field-col {
+    height: @gamecell_size;
+    width: @gamecell_size;
+  }
+  #gamepanel {
+    height: 11.25vh * 4;
+    width: 8 * 1fr;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: repeat(8, 11.25vh);
+    grid-template-areas:
+      ". . . . infopanel infopanel infopanel infopanel . . . ."
+      ". . . . inputpanel inputpanel inputpanel inputpanel . . . ."
+      ". . gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel . ."
+      ". . gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel . ."
+      ". . gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel . ."
+      ". . gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel . ."
+      ". . . . . . . . . . . ."
+  }
+  @input_font_size: 1.15vh ! important;
+  .input-critical-button {font-size: @input_font_size;}
+  .input-normal-button {font-size: @input_font_size;}
+  .input-warning-button {font-size: @input_font_size;}
+  .info-text {font-size: @input_font_size;}
+}
+
+//X-Large
+@media (min-width: @large) and (orientation: landscape) {
+  @gamecell_size: 2vw;
+  @gamefield_width: calc(@gamecell_size * 19);
+  @gamefield_heigth: calc(@gamecell_size * 20);
+  .game-field {
+    height: @gamecell_size;
+    width: @gamecell_size;
+  }
+  .game-field-col {
+    height: @gamecell_size;
+    width: @gamecell_size;
+  }
+  #gamepanel {
+    height: 20vh;
+    width: 20vw;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    grid-template-areas:
+      ". . infopanel infopanel . gamepanel gamepanel gamepanel gamepanel . . ."
+      ". . inputpanel inputpanel . gamepanel gamepanel gamepanel gamepanel . . ."
+      ". . . . . gamepanel gamepanel gamepanel gamepanel . . ."}
+  @input_font_size: 1.15vw ! important;
+  .input-critical-button {font-size: @input_font_size;}
+  .input-normal-button {font-size: @input_font_size;}
+  .input-warning-button {font-size: @input_font_size;}
+  .info-text {font-size: @input_font_size;}
+}
+
+@media (min-width: @large) and (orientation: portrait) {
+  @gamecell_size: 2.25vh;
+  @gamefield_width: calc(@gamecell_size * 19);
+  @gamefield_heigth: calc(@gamecell_size * 20);
+  .game-field {
+    height: @gamecell_size;
+    width: @gamecell_size;
+  }
+  .game-field-col {
+    height: @gamecell_size;
+    width: @gamecell_size;
+  }
+  #gamepanel {
+    height: 11.25vh * 4;
+    width: 8 * 1fr;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: repeat(8, 11.25vh);
+    grid-template-areas:
+      ". . . . infopanel infopanel infopanel infopanel . . . ."
+      ". . . . inputpanel inputpanel inputpanel inputpanel . . . ."
+      ". . gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel . ."
+      ". . gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel . ."
+      ". . gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel . ."
+      ". . gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel . ."
+      ". . . . . . . . . . . ."
+  }
+  @input_font_size: 1.15vh ! important;
+  .input-critical-button {font-size: @input_font_size;}
+  .input-normal-button {font-size: @input_font_size;}
+  .input-warning-button {font-size: @input_font_size;}
+  .info-text {font-size: @input_font_size;}
+}
+
 
 html {
   font-family: @game_font;
@@ -168,7 +483,7 @@ html {
   color: @input_color;
   border: 3px solid white;
   text-shadow: none;
-  font-size: 15px;
+  //font-size: 15px;
   width: 100%;
   background: rgba(120, 34, 34, 0.75);
   text-align: center;
