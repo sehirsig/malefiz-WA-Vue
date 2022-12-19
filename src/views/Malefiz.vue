@@ -1,17 +1,12 @@
 <template>
   <Navigation selected="malefiz"></Navigation>
-  <div v-if:="isOnline" class="container">
-    <div class="row">
-      <div class="col-lg-4">
+  <div v-if:="isOnline">
+    <div class="grid">
         <InfoPanel></InfoPanel>
-      </div>
-      <div class="col-lg-8">
         <Gameboard></Gameboard>
-      </div>
     </div>
   </div>
-  <div v-else: class="container">
-    <div class="q-pa-md">
+  <div v-else: class="container"><div class="q-pa-md">
       <div class="text-purple q-gutter-md" style="font-size: 2em">
         <q-icon name="warning" />
       </div>
@@ -57,22 +52,72 @@ export default {
 @gamefield_width: calc(@gamecell_size * 19);
 @gamefield_heigth: calc(@gamecell_size * 20);
 
-@media (max-width: 992px) {
-  #information-panel {
-    font-size: 2.5vw
+@tiny: 500px;
+@small: 900px;
+@medium: 1200px;
+@large: 1500px;
+@xxl: 5000px;
+
+#information-panel {
+  grid-area: infopanel;
+}
+#gamepanel {
+  grid-area: gamepanel;
+}
+#input-panel-group {
+  grid-area: inputpanel;
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: repeat(8, 11.7vh);
+  grid-template-areas:
+      ". . . . . gamepanel gamepanel gamepanel gamepanel . . ."
+      ". . infopanel infopanel . gamepanel gamepanel gamepanel gamepanel . . ."
+      ". . inputpanel inputpanel . gamepanel gamepanel gamepanel gamepanel . . ."
+      ". . inputpanel inputpanel . gamepanel gamepanel gamepanel gamepanel . . ."
+      ". . . . . gamepanel gamepanel gamepanel gamepanel . . ."
+      ". . . . . gamepanel gamepanel gamepanel gamepanel . . ."
+}
+
+@media (max-width: @small) and (orientation: landscape) and (max-height: @small) {
+  .game-field {
+    height: @gamecell_size * 0.75;
+    width: @gamecell_size * 0.75;
   }
+
+  .grid {
+    display: grid;
+    grid-template-columns: 5vw 15vw 10vw 50vw 15vw 5vw ;
+    grid-template-rows: repeat(5, 20vh);
+    grid-template-areas:
+      ". infopanel infopanel gamepanel gamepanel ."
+      ". infopanel infopanel gamepanel gamepanel ."
+      ". inputpanel inputpanel gamepanel gamepanel ."
+      ". inputpanel inputpanel gamepanel gamepanel ."
+      ". . . . . ."
+  }
+}
+
+@media (max-width: @small) and (orientation: portrait) {
 
   .game-field {
     height: @gamecell_size * 1.7;
     width: @gamecell_size * 1.7;
   }
+
+  .grid {
+    display: grid;
+    grid-template-columns: 5vw 15vw 60vw 15vw 5vw ;
+    grid-template-rows: 10vh 20vh 60vh;
+    grid-template-areas:
+      ". infopanel  infopanel infopanel ."
+      ". inputpanel inputpanel inputpanel ."
+      ". gamepanel gamepanel gamepanel ."
+  }
 }
 
 @media (min-width: 1400px) {
-  #information-panel {
-    font-size: 1vw
-  }
-
   .game-field {
     height: @gamecell_size;
     width: @gamecell_size;
@@ -272,64 +317,6 @@ html {
 #diceModal {
   background-color: rgba(0, 0, 0, 0);
   border: transparent;
-}
-
-@import url("https://fonts.googleapis.com/css?family=Sacramento&display=swap");
-
-#winner {
-  font-size: calc(150px + 18vh);
-  line-height: calc(150px + 20vh);
-  text-shadow: 0 0 5px #f562ff, 0 0 15px #f562ff, 0 0 25px #f562ff,
-  0 0 20px #f562ff, 0 0 30px #890092, 0 0 80px #890092, 0 0 80px #890092;
-  color: #fccaff;
-  font-family: "Sacramento", cursive;
-  text-align: center;
-  animation: blink 12s infinite;
-  -webkit-animation: blink 12s infinite;
-}
-
-@-webkit-keyframes blink {
-  20%,
-  24%,
-  55% {
-    color: #111;
-    text-shadow: none;
-  }
-
-  0%,
-  19%,
-  21%,
-  23%,
-  25%,
-  54%,
-  56%,
-  100% {
-    color: #fccaff;
-    text-shadow: 0 0 5px #f562ff, 0 0 15px #f562ff, 0 0 25px #f562ff,
-    0 0 20px #f562ff, 0 0 30px #890092, 0 0 80px #890092, 0 0 80px #890092;
-  }
-}
-
-@keyframes blink {
-  20%,
-  24%,
-  55% {
-    color: #111;
-    text-shadow: none;
-  }
-
-  0%,
-  19%,
-  21%,
-  23%,
-  25%,
-  54%,
-  56%,
-  100% {
-    color: #fccaff;
-    text-shadow: 0 0 5px #f562ff, 0 0 15px #f562ff, 0 0 25px #f562ff,
-    0 0 20px #f562ff, 0 0 30px #890092, 0 0 80px #890092, 0 0 80px #890092;
-  }
 }
 
 </style>
