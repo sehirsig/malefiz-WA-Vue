@@ -55,7 +55,7 @@ export default {
 @tiny: 500px;
 @small: 900px;
 @medium: 1200px;
-@large: 1500px;
+@large: 1400px;
 @xxl: 5000px;
 
 #information-panel {
@@ -117,7 +117,7 @@ export default {
   }
 }
 
-@media (min-width: 1400px) {
+@media (min-width: @large) {
   .game-field {
     height: @gamecell_size;
     width: @gamecell_size;
