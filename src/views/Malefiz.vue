@@ -1,6 +1,6 @@
 <template>
   <Navigation selected="malefiz"></Navigation>
-  <div v-if:="isOnline">
+  <div v-if:="backendOnline">
     <div class="grid">
         <InfoPanel></InfoPanel>
         <Gameboard></Gameboard>
@@ -20,14 +20,23 @@
 import InfoPanel from "@/components/Game/InfoPanel.vue";
 import Gameboard from "@/components/Game/Gameboard.vue";
 import Navigation from "@/components/Navigation.vue";
-import {webSocketMixin} from "@/mixins/webSocketMixin";
+import $ from "jquery";
 
 export default {
   name: "Malefiz-Game",
-  mixins: [webSocketMixin],
   components: {Navigation, Gameboard, InfoPanel},
+  data() {
+    return{
+      backendOnline: false,
+    }
+  },
   mounted() {
-    this.connectWebSocket();
+    $.ajax({
+      url: 'http://localhost:9000/status'
+    }).done(() => {
+            this.backendOnline = true;
+        }
+    );
   },
 }
 </script>

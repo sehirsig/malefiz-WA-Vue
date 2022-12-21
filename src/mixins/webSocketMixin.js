@@ -1,7 +1,5 @@
 import $ from "jquery";
 
-
-
 export const webSocketMixin = {
     data: function () {
         return {
@@ -31,10 +29,12 @@ export const webSocketMixin = {
             }
 
             this.webSocket.onclose = () => {
+                this.processCommand("reset", " ")
                 this.isOnline = this.webSocket.readyState === WebSocket.OPEN;
             };
 
             this.webSocket.onerror = () => {
+                this.processCommand("reset", " ")
                 this.isOnline = this.webSocket.readyState === WebSocket.OPEN;
             };
 
@@ -72,6 +72,27 @@ export const webSocketMixin = {
         },
         processCmdWS(cmd, data) {
             this.webSocket.send(cmd + "|" + data + "|" + this.secretId)
+        },
+        processCommand(cmd, returnData) {
+            this.postAjax("POST", "http://localhost:9000/command", {"cmd": cmd, "data": returnData, "secretId": this.secretId.toString()}, cmd).then(() => {
+            })
+        },
+        postAjax(method, url, returnData) {
+            return $.ajax({
+                method: method,
+                url: url,
+                data: JSON.stringify(returnData),
+                dataType: "json",
+                contentType: "application/json",
+
+                success: function (response) {
+                    this.data = response;
+                },
+                error: function (response) {
+                    console.log("Error")
+                    console.error(response);
+                }
+            });
         },
         checkWin() {
             if (this.status === this.stat_gamewinner) {
