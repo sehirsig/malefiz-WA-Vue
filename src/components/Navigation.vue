@@ -7,12 +7,18 @@
       </button>
       <div class="collapse navbar-collapse justify-content-center" id="navbarNavAltMarkup">
         <div class="navbar-nav">
-          <a v-if="selected === 'home'" class="nav-link active hoverable text-center" aria-current="page" :href="homeLink">Home</a>
-          <a v-else class="nav-link hoverable text-center" :href="homeLink">Home</a>
-          <a v-if="selected === 'about'" class="nav-link active hoverable text-center" aria-current="page" :href="aboutLink">About</a>
-          <a v-else class="nav-link hoverable text-center" :href="aboutLink">About</a>
-          <a v-if="selected === 'malefiz'" class="nav-link active hoverable text-center" aria-current="page" :href="malefizLink">Malefiz</a>
-          <a v-else class="nav-link hoverable text-center" :href="malefizLink">Malefiz</a>
+          <router-link style="text-decoration: none; color: #c7c7c7" :to="{name:'Home'}">
+            <a v-if="selected === 'home'" class="nav-link active hoverable text-center" aria-current="page">Home</a>
+            <a v-else class="nav-link hoverable text-center">Home</a>
+          </router-link>
+          <router-link style="text-decoration: none; color: #c7c7c7" :to="{name:'About'}">
+          <a v-if="selected === 'about'" class="nav-link active hoverable text-center" aria-current="page">About</a>
+          <a v-else class="nav-link hoverable text-center">About</a>
+          </router-link>
+          <router-link style="text-decoration: none; color: #c7c7c7" :to="{name:'Malefiz'}">
+          <a v-if="selected === 'malefiz'" class="nav-link active hoverable text-center" aria-current="page">Malefiz</a>
+          <a v-else class="nav-link hoverable text-center">Malefiz</a>
+          </router-link>
           <button type="button" class="btn btn-dark hoverable" data-bs-toggle="modal" data-bs-target="#infoModal" >
             <q-icon name="info"/>
             Game Instructions
