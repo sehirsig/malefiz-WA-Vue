@@ -1,5 +1,6 @@
 <template>
   <Navigation selected="malefiz"></Navigation>
+  <br>
   <div v-if:="backendOnline">
     <div class="grid">
         <InfoPanel></InfoPanel>
