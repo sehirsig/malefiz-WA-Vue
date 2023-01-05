@@ -12,6 +12,22 @@ import {Quasar} from 'quasar'
 import quasarUserOptions from './quasar-user-options'
 import './registerServiceWorker'
 
+// Database connection
+import firebase from 'firebase/compat/app';
+import 'firebase/compat/auth';
+import 'firebase/compat/firestore';
+
+const firebaseConfig = {
+    apiKey: "AIzaSyD40GQaSJ9le5UyO-KP1abaA4RAjpjRMZk",
+    authDomain: "malefiz-wa-vue.firebaseapp.com",
+    projectId: "malefiz-wa-vue",
+    storageBucket: "malefiz-wa-vue.appspot.com",
+    messagingSenderId: "66821837679",
+    appId: "1:66821837679:web:6c2cc77451c10836898e9a",
+    measurementId: "G-Z2LLQ2BH3C"
+}
+firebase.initializeApp(firebaseConfig)
+
 const app = createApp(App)
 
 app.config.globalProperties.stat_welcome = 0

@@ -7,6 +7,14 @@
       </button>
       <div class="collapse navbar-collapse justify-content-center" id="navbarNavAltMarkup">
         <div class="navbar-nav">
+          <router-link v-if="!isLoggedIn" style="text-decoration: none; color: #c7c7c7" :to="{name:'signin'}">
+            <a v-if="selected === 'login'" class="nav-link active hoverable text-center" aria-current="page">Login</a>
+            <a v-else class="nav-link hoverable text-center">Login</a>
+          </router-link>
+          <router-link v-if="!isLoggedIn" style="text-decoration: none; color: #c7c7c7" :to="{name:'register-user'}">
+            <a v-if="selected === 'register'" class="nav-link active hoverable text-center" aria-current="page">Register</a>
+            <a v-else class="nav-link hoverable text-center">Register</a>
+          </router-link>
           <router-link style="text-decoration: none; color: #c7c7c7" :to="{name:'Home'}">
             <a v-if="selected === 'home'" class="nav-link active hoverable text-center" aria-current="page">Home</a>
             <a v-else class="nav-link hoverable text-center">Home</a>
@@ -15,14 +23,14 @@
           <a v-if="selected === 'about'" class="nav-link active hoverable text-center" aria-current="page">About</a>
           <a v-else class="nav-link hoverable text-center">About</a>
           </router-link>
-          <router-link style="text-decoration: none; color: #c7c7c7" :to="{name:'Malefiz'}">
+          <router-link v-if="isLoggedIn" style="text-decoration: none; color: #c7c7c7" :to="{name:'Malefiz'}">
           <a v-if="selected === 'malefiz'" class="nav-link active hoverable text-center" aria-current="page">Malefiz</a>
           <a v-else class="nav-link hoverable text-center">Malefiz</a>
           </router-link>
-          <button type="button" class="btn btn-dark hoverable" data-bs-toggle="modal" data-bs-target="#infoModal" >
-            <q-icon name="info"/>
-            Game Instructions
-          </button>
+          <p v-if="isLoggedIn" class="nav-link hoverable text-center" data-bs-toggle="modal" data-bs-target="#infoModal"><q-icon name="info"/>
+            Game Instructions</p>
+          <p v-if="isLoggedIn" class="nav-link text-center">Hello {{ user.email }}!</p>
+          <a v-if="isLoggedIn" class="nav-link hoverable text-center" @click="signOut">Sign Out</a>
           <game-instruction/>
         </div>
       </div>
@@ -31,6 +39,7 @@
 </template>
 
 <script>
+import firebase from "firebase/compat/app";
 import GameInstruction from "@/components/Navigation/GameInstruction.vue";
 
 export default {
@@ -38,10 +47,32 @@ export default {
   components: {GameInstruction},
   data() {
     return {
+      isLoggedIn: false,
+      user: "",
       homeLink: "/",
       aboutLink: "/about",
       malefizLink: "/malefiz",
     }
+  },
+  methods: {
+    signOut() {
+      firebase.auth().signOut().then(() => {
+        firebase.auth().onAuthStateChanged(() => {
+          this.$router.push('/')
+        })
+      })
+    }
+  },
+  created() {
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        this.isLoggedIn = true;
+        this.user = user;
+      } else {
+        this.isLoggedIn = false;
+        this.user = ""
+      }
+    });
   },
   props: ['selected'],
 }
