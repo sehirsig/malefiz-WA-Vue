@@ -35,7 +35,7 @@
               <q-icon name="account_circle" color="grey" size="2em"/>
             </button>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuAccount">
-              <li><a class="dropdown-item">Account: {{ user.email }}</a></li>
+              <li><a class="dropdown-item">Account: {{ user.displayName }}</a></li>
               <li><a class="dropdown-item text-danger" @click="signOut">Sign Out</a></li>
             </ul>
           </div>

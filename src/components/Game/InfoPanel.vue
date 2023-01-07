@@ -115,6 +115,7 @@
 <script>
 import {webSocketMixin} from "@/mixins/webSocketMixin";
 import $ from "jquery";
+import firebase from "firebase/compat/app";
 import StartButton from "@/components/Game/Buttons/StartButton.vue";
 import ResetButton from "@/components/Game/Buttons/ResetButton.vue";
 import RollDiceButton from "@/components/Game/Buttons/RollDiceButton.vue";
@@ -127,6 +128,11 @@ export default {
   name: "InfoPanel",
   components: {AddPlayerForm, SkipButton, FigMoveButton, SelectFigButton, RollDiceButton, ResetButton, StartButton},
   mixins: [webSocketMixin],
+  data() {
+    return {
+      user: "",
+    }
+  },
   methods: {
     rollDice() {
       this.processCmdWS("rollDice", " ")
@@ -141,17 +147,12 @@ export default {
       this.processCmdWS("skip", " ")
     },
     addPlayer() {
-      const player_name = $('#name').get(0).value;
-      if (player_name === "") {
-        this.$swal({
-          icon: "warning",
-          text: "Blank name is not allowed!",
-          title: "Error!",
-          showCloseButton: "Nice",
-        })
+      if (this.user.displayName === "") {
+        this.playerNum = this.player_count + 1
+        this.processCmdWS("addPlayer", " ")
       } else {
         this.playerNum = this.player_count + 1
-        this.processCmdWS("addPlayer", player_name)
+        this.processCmdWS("addPlayer", this.user.displayName)
       }
     },
     startDiceAudio() {
@@ -180,6 +181,13 @@ export default {
     },
   },
   created() {
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        this.user = user;
+      } else {
+        this.user = ""
+      }
+    })
     this.connectWebSocket();
   },
 }

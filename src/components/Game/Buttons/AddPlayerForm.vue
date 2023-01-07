@@ -1,6 +1,4 @@
 <template>
-  <input type="text" class="form-control text-center input-normal-button" placeholder="Username" aria-label="Username"
-         aria-describedby="basic-addon1" id="name">
   <button type="button" class="btn btn-success input-normal-button" v-on:click="parentMethod()">
     Join Game
   </button>
