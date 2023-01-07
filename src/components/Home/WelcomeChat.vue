@@ -38,12 +38,18 @@
       <div>
         When you're feeling ready, select the Malefiz tab to start playing
       </div>
+      <div>
+        Don't forget to login by clicking on the avatar on the top!
+      </div>
     </q-chat-message>
     <q-chat-message
         name="Jojo"
         align="left"
         bg-color="amber"
     >
+      <div>
+        Yep logged in!
+      </div>
       <div>
         Got it! Let's go!!!
       </div>
@@ -62,5 +68,6 @@ export default {
 .my-emoticon {
   vertical-align: middle;
   height: 2em;
-  width: 2em; }
+  width: 2em;
+}
 </style>

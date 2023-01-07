@@ -8,10 +8,6 @@
       </button>
       <div class="collapse navbar-collapse justify-content-center" id="navbarNavAltMarkup">
         <div class="navbar-nav">
-          <router-link v-if="!isLoggedIn" style="text-decoration: none; color: #c7c7c7" :to="{name:'signin'}">
-            <a v-if="selected === 'login'" class="nav-link active hoverable text-center" aria-current="page">Login</a>
-            <a v-else class="nav-link hoverable text-center">Login</a>
-          </router-link>
           <router-link style="text-decoration: none; color: #c7c7c7" :to="{name:'Home'}">
             <a v-if="selected === 'home'" class="nav-link active hoverable text-center" aria-current="page">Home</a>
             <a v-else class="nav-link hoverable text-center">Home</a>
@@ -30,13 +26,20 @@
             <q-icon name="info"/>
             Game Instructions
           </p>
-          <div v-if="isLoggedIn" class="dropdown">
-            <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+          <div class="dropdown">
+            <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
+                    aria-expanded="false">
               <q-icon name="account_circle" color="grey" size="2em"/>
             </button>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuAccount">
-              <li><a class="dropdown-item">Account: {{ user.displayName }}</a></li>
-              <li><a class="dropdown-item text-danger" @click="signOut">Sign Out</a></li>
+              <li>
+                <router-link v-if="!isLoggedIn" class="dropdown-item" style="text-decoration: none; color: #c7c7c7"
+                             :to="{name:'signin'}">
+                  <a class="dropdown-item">Login</a>
+                </router-link>
+              </li>
+              <li><a v-if="isLoggedIn" class="dropdown-item">Account: {{ user.displayName }}</a></li>
+              <li><a v-if="isLoggedIn" class="dropdown-item text-danger" @click="signOut">Sign Out</a></li>
             </ul>
           </div>
           <game-instruction/>
