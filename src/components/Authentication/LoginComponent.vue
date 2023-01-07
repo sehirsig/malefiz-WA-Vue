@@ -1,40 +1,59 @@
 <template>
-  <Navigation selected="login"></Navigation>
-  <div class="row d-flex justify-content-center">
-    <div class="col-md-8 mt-5">
-      <form @submit.prevent="onSubmit">
-        <div class="form-group mb-3">
-          <label><strong>Email</strong></label>
-          <input type="email" class="form-control form-control-lg" v-model="user.email"/>
+  <Navigation selected="auth"></Navigation>
+  <div class="h-100 gradient-form">
+    <div class="container py-5 h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-xl-10">
+          <div class="card rounded-3 text-black">
+            <div class="row g-0">
+              <div class="col-lg-6">
+                <div class="card-body p-md-5 mx-md-4">
+                  <div class="text-center">
+                    <h4 class="mt-1 mb-5 pb-1">Malefiz</h4>
+                  </div>
+                  <form @submit.prevent="onSubmit">
+                    <p>Please login to your account</p>
+                    <div class="form-outline mb-4">
+                      <input type="email" id="emailForm" class="form-control"
+                             placeholder="Email address" v-model="user.email"/>
+                      <label class="form-label" for="emailForm">E-Mail</label>
+                    </div>
+                    <div class="form-outline mb-4">
+                      <input type="password" id="passwordForm" class="form-control" v-model="user.password"/>
+                      <label class="form-label" for="passwordForm">Password</label>
+                    </div>
+                    <div class="text-center pt-1 mb-5 pb-1">
+                      <input type="submit" class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" value="Login"/>
+                      <br>
+                      <a class="btn text-muted text-italic" @click="forgotPassword">Forgot password?</a>
+                    </div>
+                    <div class="text-center pt-1 mb-5 pb-1">
+                      <a>Other sign in options</a>
+                      <br>
+                      <button type="button" @click="googleSignIn" class="google-login-btn">
+                        Sign in with Google
+                      </button>
+                    </div>
+                    <div class="d-flex align-items-center justify-content-center pb-4">
+                      <p class="mb-0 me-2">Don't have an account?</p>
+                      <router-link style="text-decoration: none; color: #c7c7c7" :to="{name:'register-user'}">
+                        <button type="button" class="btn btn-outline-danger">Register</button>
+                      </router-link>
+                    </div>
+                  </form>
+                </div>
+              </div>
+              <div class="col-lg-6 d-flex align-items-center gradient-custom-2">
+                <div class="text-white px-3 py-4 p-md-5 mx-md-4">
+                  <h4 class="mb-4">HTWG Constance - AIN - WA - Game Project Malefiz</h4>
+                  <p class="small mb-0">Game was made by (Github) @sehirsig & @jojoGraff.</p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-
-        <div class="form-group mb-3">
-          <label><strong>Password</strong></label>
-          <input type="password" class="form-control form-control-lg" v-model="user.password"/>
-        </div>
-
-        <div class="d-grid">
-          <input type="submit" class="btn btn-primary btn-lg btn-block" value="Login"/>
-        </div>
-      </form>
+      </div>
     </div>
-  </div>
-  <br>
-  <div>
-    <button type="button" @click="googleSignIn" class="google-login-btn">
-      Sign in with Google
-    </button>
-  </div>
-  <br>
-  <div>
-    <a>Not Registered yet? </a>
-    <router-link style="text-decoration: none; color: #c7c7c7" :to="{name:'register-user'}">
-      <a class="btn link-primary">Register</a>
-    </router-link>
-  </div>
-  <div>
-    <a>Forgot Password? </a>
-    <a class="btn link-primary" @click="forgotPassword">Reset Password</a>
   </div>
 </template>
 
@@ -113,10 +132,33 @@ export default {
 </script>
 
 <style scoped lang="less">
+
+.gradient-custom-2 {
+  /* fallback for old browsers */
+  background: #fccb90;
+
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: -webkit-linear-gradient(to right, #ffa200, #e08201, #c16401, #a04800);
+
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: linear-gradient(to right, #ffa200, #e08201, #c16401, #a04800);
+}
+
+@media (min-width: 768px) {
+  .gradient-form {
+    height: 100vh !important;
+  }
+}
+@media (min-width: 769px) {
+  .gradient-custom-2 {
+    border-top-right-radius: .3rem;
+    border-bottom-right-radius: .3rem;
+  }
+}
+
 .google-login-btn {
   background-color: white;
   background-image: url(../../assets/images/google-logo.png);
-  background-color: white;
   background-repeat: no-repeat;
   background-position: 12px 14px;
   border-radius: 3px;

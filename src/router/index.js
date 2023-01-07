@@ -4,6 +4,7 @@ import About from '../views/About.vue'
 import Malefiz from '../views/Malefiz.vue'
 import RegisterComponent from "../components/Authentication/RegisterComponent.vue";
 import LoginComponent from "../components/Authentication/LoginComponent.vue";
+import AccountComponent from "../components/Authentication/AccountComponent.vue";
 import firebase from "firebase/compat/app";
 
 const routes = [
@@ -21,6 +22,14 @@ const routes = [
         component: LoginComponent,
         meta: {
             requiresNoAuth: true
+        }
+    },
+    {
+        path: '/account',
+        name: 'account',
+        component: AccountComponent,
+        meta: {
+            requiresAuth: true
         }
     },
     {

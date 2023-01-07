@@ -21,7 +21,7 @@
                aria-current="page">Malefiz</a>
             <a v-else class="nav-link hoverable text-center">Malefiz</a>
           </router-link>
-          <p v-if="isLoggedIn" class="nav-link hoverable text-center" data-bs-toggle="modal"
+          <p v-if="isLoggedIn" class="nav-link text-center" data-bs-toggle="modal"
              data-bs-target="#infoModal">
             <q-icon name="info"/>
             Game Instructions
@@ -29,7 +29,8 @@
           <div class="dropdown">
             <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
                     aria-expanded="false">
-              <q-icon name="account_circle" color="grey" size="2em"/>
+              <q-icon v-if="selected === 'auth'" name="account_circle" color="white" size="2em"/>
+              <q-icon v-else name="account_circle" color="grey" size="2em"/>
             </button>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuAccount">
               <li>
@@ -38,7 +39,11 @@
                   <a class="dropdown-item">Login</a>
                 </router-link>
               </li>
-              <li><a v-if="isLoggedIn" class="dropdown-item">Account: {{ user.displayName }}</a></li>
+              <li>
+                <router-link v-if="isLoggedIn" class="dropdown-item" style="text-decoration: none; color: #c7c7c7" :to="{name:'account'}">
+                  <a class="dropdown-item">Account: {{ user.displayName }}</a>
+                </router-link>
+              </li>
               <li><a v-if="isLoggedIn" class="dropdown-item text-danger" @click="signOut">Sign Out</a></li>
             </ul>
           </div>
@@ -75,6 +80,7 @@ export default {
     }
   },
   created() {
+    document.title = "Malefiz"
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
         this.isLoggedIn = true;
@@ -112,7 +118,7 @@ export default {
   vertical-align: middle;
   position: relative;
   box-shadow: 0 0 1px rgba(0, 0, 0, 0);
-  tranform: translateZ(0);
+  transform: translateZ(0);
   transition-duration: .3s;
   transition-property: transform;
 }
