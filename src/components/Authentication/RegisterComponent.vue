@@ -1,5 +1,5 @@
 <template>
-  <Navigation selected="register"></Navigation>
+  <Navigation selected="login"></Navigation>
   <div class="row d-flex justify-content-center">
     <div class="col-md-8 mt-5">
       <form @submit.prevent="onSubmit">
@@ -23,6 +23,13 @@
         </div>
       </form>
     </div>
+  </div>
+  <br>
+  <div>
+    <a>Have an Account? </a>
+    <router-link v-if="!isLoggedIn" style="text-decoration: none; color: #c7c7c7" :to="{name:'signin'}">
+      <a class="btn link-primary">Login</a>
+    </router-link>
   </div>
 </template>
 

@@ -2,7 +2,8 @@
   <nav class="navbar navbar-dark navbar-expand-lg bg-dark fixed-top">
     <div class="container-fluid">
       <a class="navbar-brand" id="navBrand">Malefiz</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+              aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse justify-content-center" id="navbarNavAltMarkup">
@@ -11,26 +12,33 @@
             <a v-if="selected === 'login'" class="nav-link active hoverable text-center" aria-current="page">Login</a>
             <a v-else class="nav-link hoverable text-center">Login</a>
           </router-link>
-          <router-link v-if="!isLoggedIn" style="text-decoration: none; color: #c7c7c7" :to="{name:'register-user'}">
-            <a v-if="selected === 'register'" class="nav-link active hoverable text-center" aria-current="page">Register</a>
-            <a v-else class="nav-link hoverable text-center">Register</a>
-          </router-link>
           <router-link style="text-decoration: none; color: #c7c7c7" :to="{name:'Home'}">
             <a v-if="selected === 'home'" class="nav-link active hoverable text-center" aria-current="page">Home</a>
             <a v-else class="nav-link hoverable text-center">Home</a>
           </router-link>
           <router-link style="text-decoration: none; color: #c7c7c7" :to="{name:'About'}">
-          <a v-if="selected === 'about'" class="nav-link active hoverable text-center" aria-current="page">About</a>
-          <a v-else class="nav-link hoverable text-center">About</a>
+            <a v-if="selected === 'about'" class="nav-link active hoverable text-center" aria-current="page">About</a>
+            <a v-else class="nav-link hoverable text-center">About</a>
           </router-link>
           <router-link v-if="isLoggedIn" style="text-decoration: none; color: #c7c7c7" :to="{name:'Malefiz'}">
-          <a v-if="selected === 'malefiz'" class="nav-link active hoverable text-center" aria-current="page">Malefiz</a>
-          <a v-else class="nav-link hoverable text-center">Malefiz</a>
+            <a v-if="selected === 'malefiz'" class="nav-link active hoverable text-center"
+               aria-current="page">Malefiz</a>
+            <a v-else class="nav-link hoverable text-center">Malefiz</a>
           </router-link>
-          <p v-if="isLoggedIn" class="nav-link hoverable text-center" data-bs-toggle="modal" data-bs-target="#infoModal"><q-icon name="info"/>
-            Game Instructions</p>
-          <p v-if="isLoggedIn" class="nav-link text-center">Hello {{ user.email }}!</p>
-          <a v-if="isLoggedIn" class="nav-link hoverable text-center" @click="signOut">Sign Out</a>
+          <p v-if="isLoggedIn" class="nav-link hoverable text-center" data-bs-toggle="modal"
+             data-bs-target="#infoModal">
+            <q-icon name="info"/>
+            Game Instructions
+          </p>
+          <div v-if="isLoggedIn" class="dropdown">
+            <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+              <q-icon name="account_circle" color="grey" size="2em"/>
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuAccount">
+              <li><a class="dropdown-item">Account: {{ user.email }}</a></li>
+              <li><a class="dropdown-item text-danger" @click="signOut">Sign Out</a></li>
+            </ul>
+          </div>
           <game-instruction/>
         </div>
       </div>
@@ -92,30 +100,30 @@ export default {
 }
 
 .modal-backdrop {
-  position:unset !important;
+  position: unset !important;
 }
 
-.hoverable{
-  display:inline-block;
+.hoverable {
+  display: inline-block;
   backface-visibility: hidden;
   vertical-align: middle;
-  position:relative;
-  box-shadow: 0 0 1px rgba(0,0,0,0);
+  position: relative;
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
   tranform: translateZ(0);
   transition-duration: .3s;
-  transition-property:transform;
+  transition-property: transform;
 }
 
-.hoverable:before{
-  position:absolute;
+.hoverable:before {
+  position: absolute;
   pointer-events: none;
-  z-index:-1;
+  z-index: -1;
   content: '';
   top: 100%;
   left: 5%;
-  height:10px;
-  width:90%;
-  opacity:0;
+  height: 10px;
+  width: 90%;
+  opacity: 0;
   background: -webkit-radial-gradient(center, ellipse, rgba(255, 255, 255, 0.35) 0%, rgba(255, 255, 255, 0) 80%);
   background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.35) 0%, rgba(255, 255, 255, 0) 80%);
   /* W3C */
@@ -123,14 +131,14 @@ export default {
   transition-property: transform, opacity;
 }
 
-.hoverable:hover, .hoverable:active, .hoverable:focus{
-  transform: translateY(-5px);
-}
-.hoverable:hover:before, .hoverable:active:before, .hoverable:focus:before{
-  opacity: 1;
+.hoverable:hover, .hoverable:active, .hoverable:focus {
   transform: translateY(-5px);
 }
 
+.hoverable:hover:before, .hoverable:active:before, .hoverable:focus:before {
+  opacity: 1;
+  transform: translateY(-5px);
+}
 
 
 @keyframes bounce-animation {

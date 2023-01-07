@@ -20,9 +20,22 @@
     </div>
   </div>
   <br>
-  <button type="button" @click="googleSignIn" class="google-login-btn" >
-    Sign in with Google
-  </button>
+  <div>
+    <button type="button" @click="googleSignIn" class="google-login-btn">
+      Sign in with Google
+    </button>
+  </div>
+  <br>
+  <div>
+    <a>Not Registered yet? </a>
+    <router-link style="text-decoration: none; color: #c7c7c7" :to="{name:'register-user'}">
+      <a class="btn link-primary">Register</a>
+    </router-link>
+  </div>
+  <div>
+    <a>Forgot Password? </a>
+    <a class="btn link-primary" @click="forgotPassword">Reset Password</a>
+  </div>
 </template>
 
 <script>
@@ -56,7 +69,7 @@ export default {
             console.log(err);
           });
     },
-    googleSignIn: function () {
+    googleSignIn() {
       let provider = new firebase.auth.GoogleAuthProvider();
       firebase
           .auth()
@@ -77,6 +90,23 @@ export default {
             })
             console.log(err); // This will give you all the information needed to further debug any errors
           });
+    },
+    forgotPassword() {
+      this.$swal({
+        title: 'Reset Password',
+        text: 'Enter your E-Mail. If the E-Mail exists, you will get an Reset Link to your E-Mail.',
+        input: 'text',
+        inputAttributes: {
+          autocapitalize: 'off'
+        },
+        showCancelButton: true,
+        confirmButtonText: 'Reset',
+        showLoaderOnConfirm: true,
+        preConfirm: (email) => {
+          firebase.auth().sendPasswordResetEmail(email);
+        },
+        allowOutsideClick: () => !this.$swal.isLoading()
+      })
     }
   }
 }
@@ -98,21 +128,25 @@ export default {
   font-weight: 500;
   padding: 12px 16px 12px 42px;
   transition: background-color 0.3s, box-shadow 0.3s;
-&:hover {
-   box-shadow: 0 -1px 0 rgba(0, 0, 0, .04), 0 2px 4px rgba(0, 0, 0, .25);
- }
-&:active {
-   background-color: #eeeeee;
- }
-&:focus {
-   box-shadow: 0 -1px 0 rgba(0, 0, 0, .04), 0 2px 4px rgba(0, 0, 0, .25), 0 0 0 3px #c8dafc;
-   outline: none;
- }
-&:disabled {
-   background-color: #ebebeb;
-   box-shadow: 0 -1px 0 rgba(0, 0, 0, .04), 0 1px 1px rgba(0, 0, 0, .25);
-   cursor: not-allowed;
-   filter: grayscale(100%);
- }
+
+  &:hover {
+    box-shadow: 0 -1px 0 rgba(0, 0, 0, .04), 0 2px 4px rgba(0, 0, 0, .25);
+  }
+
+  &:active {
+    background-color: #eeeeee;
+  }
+
+  &:focus {
+    box-shadow: 0 -1px 0 rgba(0, 0, 0, .04), 0 2px 4px rgba(0, 0, 0, .25), 0 0 0 3px #c8dafc;
+    outline: none;
+  }
+
+  &:disabled {
+    background-color: #ebebeb;
+    box-shadow: 0 -1px 0 rgba(0, 0, 0, .04), 0 1px 1px rgba(0, 0, 0, .25);
+    cursor: not-allowed;
+    filter: grayscale(100%);
+  }
 }
 </style>
