@@ -91,14 +91,13 @@ Extra extra large	xxl	≥ 1400px
 .grid {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
-  grid-template-rows: repeat(8, 11.7vh);
+  grid-template-rows: repeat(5, min-content);
   grid-template-areas:
       ". . . . . gamepanel gamepanel gamepanel gamepanel . . ."
       ". . infopanel infopanel . gamepanel gamepanel gamepanel gamepanel . . ."
       ". . inputpanel inputpanel . gamepanel gamepanel gamepanel gamepanel . . ."
       ". . inputpanel inputpanel . gamepanel gamepanel gamepanel gamepanel . . ."
       ". . . . . gamepanel gamepanel gamepanel gamepanel . . ."
-      ". . . . . . . . . . . ."
 }
 
 //X-Small
@@ -120,8 +119,9 @@ Extra extra large	xxl	≥ 1400px
     width: 20vw;
   }
   .grid {
-    display: grid;grid-template-columns: repeat(12, 1fr);
-    grid-template-rows: repeat(3, 0.1fr);
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: repeat(3, min-content);
     grid-template-areas:
       ". infopanel infopanel infopanel . gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel ."
       ". inputpanel inputpanel inputpanel . gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel ."
@@ -153,16 +153,15 @@ Extra extra large	xxl	≥ 1400px
   .grid {
     display: grid;
     grid-template-columns: repeat(12, 1fr);
-    grid-template-rows: repeat(8, 11.25vh);
+    grid-template-rows: repeat(7, min-content);
     grid-template-areas:
+      ". gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel ."
+      ". gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel ."
+      ". gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel ."
+      ". gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel ."
       ". . infopanel infopanel infopanel infopanel infopanel infopanel infopanel infopanel . ."
       ". . inputpanel inputpanel inputpanel inputpanel inputpanel inputpanel inputpanel inputpanel . ."
       ". . inputpanel inputpanel inputpanel inputpanel inputpanel inputpanel inputpanel inputpanel . ."
-      ". gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel ."
-      ". gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel ."
-      ". gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel ."
-      ". gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel ."
-      ". . . . . . . . . . . ."
   }
   @input_font_size: 1.1vh ! important;
   .input-critical-button {font-size: @input_font_size;}
@@ -192,7 +191,7 @@ Extra extra large	xxl	≥ 1400px
   }
   .grid {
     display: grid;grid-template-columns: repeat(12, 1fr);
-    grid-template-rows: repeat(3, 0.1fr);
+    grid-template-rows: repeat(3, min-content);
     grid-template-areas:
       ". infopanel infopanel infopanel . gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel ."
       ". inputpanel inputpanel inputpanel . gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel ."
@@ -224,16 +223,15 @@ Extra extra large	xxl	≥ 1400px
   .grid {
     display: grid;
     grid-template-columns: repeat(12, 1fr);
-    grid-template-rows: repeat(8, 11.25vh);
+    grid-template-rows: repeat(7, min-content);
     grid-template-areas:
+      ". . gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel . ."
+      ". . gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel . ."
+      ". . gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel . ."
+      ". . gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel . ."
       ". . . . infopanel infopanel infopanel infopanel . . . ."
       ". . . . inputpanel inputpanel inputpanel inputpanel . . . ."
       ". . . . inputpanel inputpanel inputpanel inputpanel . . . ."
-      ". . gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel . ."
-      ". . gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel . ."
-      ". . gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel . ."
-      ". . gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel . ."
-      ". . . . . . . . . . . ."
   }
   @input_font_size: 1.15vh ! important;
   .input-critical-button {font-size: @input_font_size;}
@@ -262,11 +260,11 @@ Extra extra large	xxl	≥ 1400px
   }
   .grid {
     display: grid;grid-template-columns: repeat(12, 1fr);
-    grid-template-rows: repeat(3, 25vh);
+    grid-template-rows: repeat(3, min-content);
     grid-template-areas:
       ". infopanel infopanel infopanel . gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel ."
       ". inputpanel inputpanel inputpanel . gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel ."
-      ". inputpanel inputpanel inputpanel . gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel ."
+      ". . . . . gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel ."
   }
   @input_font_size: 1.15vw ! important;
   .input-critical-button {font-size: @input_font_size;}
@@ -294,15 +292,15 @@ Extra extra large	xxl	≥ 1400px
   .grid {
     display: grid;
     grid-template-columns: repeat(12, 1fr);
-    grid-template-rows: repeat(8, 11.25vh);
+    grid-template-rows: repeat(7, min-content);
     grid-template-areas:
+      ". . gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel . ."
+      ". . gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel . ."
+      ". . gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel . ."
+      ". . gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel . ."
       ". . . infopanel infopanel infopanel infopanel infopanel infopanel . . ."
       ". . . inputpanel inputpanel inputpanel inputpanel inputpanel inputpanel . . ."
       ". . . inputpanel inputpanel inputpanel inputpanel inputpanel inputpanel . . ."
-      ". . gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel . ."
-      ". . gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel . ."
-      ". . gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel . ."
-      ". . gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel . ."
   }
   @input_font_size: 1.225vh ! important;
   .input-critical-button {font-size: @input_font_size;}
@@ -332,7 +330,7 @@ Extra extra large	xxl	≥ 1400px
   .grid {
     display: grid;
     grid-template-columns: repeat(12, 1fr);
-    grid-template-rows: repeat(3, 1fr);
+    grid-template-rows: repeat(3, min-content);
     grid-template-areas:
       ". . infopanel infopanel . gamepanel gamepanel gamepanel gamepanel . . ."
       ". . inputpanel inputpanel . gamepanel gamepanel gamepanel gamepanel . . ."
@@ -363,15 +361,14 @@ Extra extra large	xxl	≥ 1400px
   .grid {
     display: grid;
     grid-template-columns: repeat(12, 1fr);
-    grid-template-rows: repeat(8, 11.25vh);
+    grid-template-rows: repeat(6, min-content);
     grid-template-areas:
+      ". . gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel . ."
+      ". . gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel . ."
+      ". . gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel . ."
+      ". . gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel . ."
       ". . . . infopanel infopanel infopanel infopanel . . . ."
       ". . . . inputpanel inputpanel inputpanel inputpanel . . . ."
-      ". . gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel . ."
-      ". . gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel . ."
-      ". . gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel . ."
-      ". . gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel . ."
-      ". . . . . . . . . . . ."
   }
   @input_font_size: 1.15vh ! important;
   .input-critical-button {font-size: @input_font_size;}
@@ -400,7 +397,7 @@ Extra extra large	xxl	≥ 1400px
   .grid {
     display: grid;
     grid-template-columns: repeat(12, 1fr);
-    grid-template-rows: repeat(3, 1fr);
+    grid-template-rows: repeat(3, min-content);
     grid-template-areas:
       ". . infopanel infopanel . gamepanel gamepanel gamepanel gamepanel . . ."
       ". . inputpanel inputpanel . gamepanel gamepanel gamepanel gamepanel . . ."
@@ -431,15 +428,14 @@ Extra extra large	xxl	≥ 1400px
   .grid {
     display: grid;
     grid-template-columns: repeat(12, 1fr);
-    grid-template-rows: repeat(8, 11.25vh);
+    grid-template-rows: repeat(6, min-content);
     grid-template-areas:
+      ". . gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel . ."
+      ". . gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel . ."
+      ". . gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel . ."
+      ". . gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel . ."
       ". . . . infopanel infopanel infopanel infopanel . . . ."
       ". . . . inputpanel inputpanel inputpanel inputpanel . . . ."
-      ". . gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel . ."
-      ". . gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel . ."
-      ". . gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel . ."
-      ". . gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel gamepanel . ."
-      ". . . . . . . . . . . ."
   }
   @input_font_size: 1.15vh ! important;
   .input-critical-button {font-size: @input_font_size;}
