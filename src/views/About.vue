@@ -1,6 +1,5 @@
 <template>
   <Navigation selected="about"></Navigation>
-  <Header></Header>
   <div class="container">
     <div class="readme-section">
       <h4 id="htwg-constance-ain-6-web-applications">HTWG Constance - AIN 6 - Web Applications</h4>
@@ -180,12 +179,11 @@
 
 <script>
 import Footer from "@/components/Footer.vue";
-import Header from "@/components/Header.vue";
 import Navigation from "@/components/Navigation.vue";
 
 export default {
   name: "About-View",
-  components: {Navigation, Header, Footer}
+  components: {Navigation, Footer}
 }
 </script>
 
