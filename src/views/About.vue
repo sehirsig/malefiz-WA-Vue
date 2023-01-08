@@ -1,5 +1,6 @@
 <template>
   <Navigation selected="about"></Navigation>
+  <br>
   <div class="container">
     <div class="readme-section">
       <h4 id="htwg-constance-ain-6-web-applications">HTWG Constance - AIN 6 - Web Applications</h4>
