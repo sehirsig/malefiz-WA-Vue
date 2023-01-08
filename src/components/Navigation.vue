@@ -1,7 +1,7 @@
 <template>
   <nav class="navbar navbar-dark navbar-expand-lg bg-dark fixed-top">
     <div class="container-fluid">
-      <a class="navbar-brand" id="navBrand">Malefiz</a>
+      <a class="navbar-brand header-text" id="navBrand" @click="goHome">Malefiz</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
               aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -77,6 +77,9 @@ export default {
           this.$router.push('/')
         })
       })
+    },
+    goHome() {
+      this.$router.push('/')
     }
   },
   created() {
@@ -224,4 +227,15 @@ export default {
   }
 }
 
+@header_color: #fcedd8;
+@header_font: 'Niconne', cursive;
+
+.header-text {
+  clear: both;
+  font-size: 5vw;
+  width: 5vw;
+  color: @header_color;
+  font-family: @header_font;
+  text-shadow: 0.05vw 0.05vw #eb452b, 0.075vw 0.075vw #efa032, 0.1vw 0.1vw #46b59b, 0.125vw 0.125vw #017e7f, 0.15vw 0.15vw #052939, 0.175vw 0.175vw #c11a2b;
+}
 </style>
