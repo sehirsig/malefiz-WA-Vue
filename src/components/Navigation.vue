@@ -232,8 +232,8 @@ export default {
 
 .header-text {
   clear: both;
-  font-size: 5vw;
-  width: 5vw;
+  font-size: min(5vw, 30px) ! important;
+  width: min(5vw, 30px) ! important;
   color: @header_color;
   font-family: @header_font;
   text-shadow: 0.05vw 0.05vw #eb452b, 0.075vw 0.075vw #efa032, 0.1vw 0.1vw #46b59b, 0.125vw 0.125vw #017e7f, 0.15vw 0.15vw #052939, 0.175vw 0.175vw #c11a2b;
