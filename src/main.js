@@ -42,6 +42,8 @@ app.config.globalProperties.stat_playing = 13
 app.config.globalProperties.stat_moving = 14
 app.config.globalProperties.stat_entername = 15
 
+app.config.globalProperties.backend_url = "malefiz-wa-playserver.herokuapp.com"
+
 app.use(Quasar, quasarUserOptions)
 
 app.use(VueSweetalert2);

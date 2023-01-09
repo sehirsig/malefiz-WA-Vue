@@ -35,7 +35,7 @@
 
     <!-- Copyright -->
     <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
-      <a> © 2022 Copyright: @@sehirsig & @@jojoGraff on GitHub</a>
+      <a> © 2022 Copyright: @sehirsig & @jojoGraff on GitHub</a>
     </div>
     <!-- Copyright -->
   </footer>

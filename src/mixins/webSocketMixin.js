@@ -22,7 +22,7 @@ export const webSocketMixin = {
     },
     methods: {
         connectWebSocket() {
-            this.webSocket = new WebSocket("wss://malefiz-wa-playserver.herokuapp.com/websocket")
+            this.webSocket = new WebSocket("wss://" + this.backend_url + "/websocket")
 
             this.webSocket.onopen = () => {
                 this.webSocket.send("Trying to connect to Server");
@@ -74,7 +74,7 @@ export const webSocketMixin = {
             this.webSocket.send(cmd + "|" + data + "|" + this.secretId)
         },
         processCommand(cmd, returnData) {
-            this.postAjax("POST", "https://malefiz-wa-playserver.herokuapp.com/command", {"cmd": cmd, "data": returnData, "secretId": this.secretId.toString()}, cmd).then(() => {
+            this.postAjax("POST", "https://" + this.backend_url + "/command", {"cmd": cmd, "data": returnData, "secretId": this.secretId.toString()}, cmd).then(() => {
             })
         },
         postAjax(method, url, returnData) {

@@ -33,7 +33,7 @@ export default {
   },
   mounted() {
     $.ajax({
-      url: 'https://malefiz-wa-playserver.herokuapp.com/status'
+      url: "https://" + this.backend_url + "/status"
     }).done(() => {
             this.backendOnline = true;
         }
