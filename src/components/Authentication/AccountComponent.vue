@@ -45,7 +45,7 @@ export default {
     changeName() {
       this.$swal({
         title: 'Change Name',
-        text: 'Enter your new name',
+        text: 'Enter your new name. (12 Characters max.)',
         input: 'text',
         inputAttributes: {
           autocapitalize: 'off'
@@ -54,11 +54,20 @@ export default {
         confirmButtonText: 'Change Name',
         showLoaderOnConfirm: true,
         preConfirm: (newName) => {
-          const currentUser = firebase.auth().currentUser;
-          currentUser.updateProfile( {
-            displayName: newName
-          })
-          this.$router.go(); // Reload page
+          if (newName.length <= 12) {
+            const currentUser = firebase.auth().currentUser;
+            currentUser.updateProfile({
+              displayName: newName
+            })
+            this.$router.go(); // Reload page
+          } else {
+            this.$swal({
+              icon: "warning",
+              text: "Username is not allowed to have more than 12 Characters.",
+              title: "Too many characters!",
+              showCloseButton: "Ok",
+            })
+          }
         },
         allowOutsideClick: () => !this.$swal.isLoading()
       })
