@@ -1,5 +1,5 @@
 # HTWG Constance - AIN 6 - Web Applications
-# Scala Project Play Server - Malefiz Game (Frontend - Vue)
+# Vue Project Frontend - Malefiz Game (Frontend - Vue)
 ## Game Project For The Lecture WA
 
 ![gamepicture](https://user-images.githubusercontent.com/81407658/114448533-f96ce480-9bd3-11eb-93a7-74dc0941f6c1.jpg)
